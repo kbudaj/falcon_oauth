@@ -27,9 +27,6 @@ class AuthCallbackResource(AuthResource):
         self.callback = callback
 
     def on_get(self, req, resp):
-        self.callback.response = resp
-        self.callback.request = req
-
         auth_resp_url = 'https://' + req.url.split('//')[1]
         session = OAuth2Session(
             self.settings['client_id'], **self.session_options)
@@ -40,7 +37,7 @@ class AuthCallbackResource(AuthResource):
         data = session.get(self.settings['data_request_url'])
         data = json.loads(data.content)
 
-        self.callback.execute(data)
+        self.callback.execute(req, resp, data)
 
 
 class Callback(object):

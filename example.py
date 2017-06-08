@@ -31,20 +31,21 @@ github_credentials = {
 
 
 class PrintUserID(Callback):
-    def execute(self, oauth_data):
-        self.response.status = falcon.HTTP_200
-        self.response.body = json.dumps(oauth_data)
+    def execute(self, req, resp, oauth_data):
+        resp.status = falcon.HTTP_200
+        resp.body = json.dumps(oauth_data)
         print("-- Callback function, print_user_id --")
         print("User ID: {}".format(oauth_data['id']))
         print("--------------------------------------")
 
+print_user_id = PrintUserID()
 
 app = falcon.API()
 
 app.add_route('/google/', AuthResource(google_credentials))
 app.add_route('/google/callback', AuthCallbackResource(
-    google_credentials, callback=PrintUserID()))
+    google_credentials, callback=print_user_id))
 
 app.add_route('/github/', AuthResource(github_credentials))
 app.add_route('/github/callback', AuthCallbackResource(
-    github_credentials, callback=PrintUserID()))
+    github_credentials, callback=print_user_id))
