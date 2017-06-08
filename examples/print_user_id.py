@@ -2,7 +2,7 @@ import falcon
 import os
 import json
 
-from OAuthResource import AuthResource, AuthCallbackResource
+from falcon_oauth import AuthResource, AuthCallbackResource
 
 GOOGLE_CLIENT_SECRET = os.environ['GOOGLE_CLIENT_SECRET']
 GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']

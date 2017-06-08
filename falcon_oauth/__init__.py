@@ -1,0 +1,1 @@
+from .OAuthResource import * # NOQA
