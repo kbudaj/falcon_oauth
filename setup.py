@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='falcon_oauth',
       version='0.1',
       description='Falcon OAuth Resource',
-      url='https://github.com/konradbnet/falcon-oauth',
+      url='https://github.com/konradbnet/falcon_oauth',
       author='Konrad Budaj',
       author_email='k@konradb.net',
       license='MIT',
