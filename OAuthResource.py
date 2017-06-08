@@ -44,6 +44,6 @@ class Callback(object):
     def __init__(self):
         self.response = falcon.Response
 
-    def execute(self, oauth_data):
+    def execute(self, req, resp, oauth_data):
         """ Interface like, requires implementation """
         raise NotImplementedError("Execute method requires implementation")
