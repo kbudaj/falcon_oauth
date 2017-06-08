@@ -44,7 +44,7 @@ oauth_data is a dict of values, that was returned by data_request_url.
 ### Example
 ```python
 def print_user_id(request, response, oauth_data):
-	response.status = falcon.HTTP_200
+    response.status = falcon.HTTP_200
     response.body = json.dumps(oauth_data)
     print("User ID: {}".format(oauth_data['id']))
 ```
