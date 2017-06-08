@@ -36,14 +36,4 @@ class AuthCallbackResource(AuthResource):
             authorization_response=auth_resp_url)
         data = session.get(self.settings['data_request_url'])
         data = json.loads(data.content)
-
-        self.callback.execute(req, resp, data)
-
-
-class Callback(object):
-    def __init__(self):
-        self.response = falcon.Response
-
-    def execute(self, req, resp, oauth_data):
-        """ Interface like, requires implementation """
-        raise NotImplementedError("Execute method requires implementation")
+        self.callback(req, resp, data)

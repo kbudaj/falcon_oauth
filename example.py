@@ -2,7 +2,7 @@ import falcon
 import os
 import json
 
-from OAuthResource import AuthResource, AuthCallbackResource, Callback
+from OAuthResource import AuthResource, AuthCallbackResource
 
 GOOGLE_CLIENT_SECRET = os.environ['GOOGLE_CLIENT_SECRET']
 GOOGLE_CLIENT_ID = os.environ['GOOGLE_CLIENT_ID']
@@ -30,15 +30,13 @@ github_credentials = {
 }
 
 
-class PrintUserID(Callback):
-    def execute(self, req, resp, oauth_data):
+def print_user_id(req, resp, oauth_data):
         resp.status = falcon.HTTP_200
         resp.body = json.dumps(oauth_data)
         print("-- Callback function, print_user_id --")
         print("User ID: {}".format(oauth_data['id']))
         print("--------------------------------------")
 
-print_user_id = PrintUserID()
 
 app = falcon.API()
 
